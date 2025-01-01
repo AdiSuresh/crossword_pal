@@ -14,7 +14,7 @@ class Crossword {
     Map<int, String>? clues,
   }) : clues = clues ?? {};
 
-  factory Crossword.rectangleGrid(
+  factory Crossword.grid(
     int length,
     int breadth,
   ) {
