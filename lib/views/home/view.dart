@@ -12,26 +12,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   static const shape = (8, 8);
 
-  final grid = Expanded(
-    child: Padding(
-      padding: const EdgeInsets.all(5),
-      child: GridView(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 5,
-        ),
-        children: [
-          for (final _ in Iterable.generate(22))
-            Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFFFFF),
-                border: Border.all(),
-              ),
-            ),
-        ],
-      ),
-    ),
-  );
-
   @override
   Widget build(BuildContext context) {
     final scaffold = Scaffold(
