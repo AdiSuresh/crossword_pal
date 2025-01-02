@@ -10,8 +10,6 @@ part 'route.g.dart';
 class HomeRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const MyHomePage(
-      title: 'Title',
-    );
+    return const HomePage();
   }
 }
