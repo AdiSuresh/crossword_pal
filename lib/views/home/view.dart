@@ -12,6 +12,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   static const shape = (8, 8);
 
+  final tableKey = GlobalKey();
+
+  var selectedCell = (0, 0);
+
   @override
   Widget build(BuildContext context) {
     final scaffold = Scaffold(
@@ -34,14 +38,55 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           for (final j in Iterable.generate(b))
                             TableCell(
-                              child: SizedBox(
-                                width: cellSize,
-                                height: cellSize,
-                                child: Center(
-                                  child: Text(
-                                    'A',
-                                  ),
-                                ),
+                              child: Builder(
+                                builder: (context) {
+                                  final cell = (i, j);
+                                  const duration = Duration(
+                                    milliseconds: 150,
+                                  );
+                                  final selected = cell == selectedCell;
+                                  final scale = switch (selected) {
+                                    true => 1.25,
+                                    _ => 1.0,
+                                  };
+                                  final result = SizedBox(
+                                    width: cellSize,
+                                    height: cellSize,
+                                    child: Center(
+                                      child: AnimatedScale(
+                                        scale: scale,
+                                        duration: duration,
+                                        child: Text(
+                                          'A',
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                  return GestureDetector(
+                                    onTap: () {
+                                      if (selected) {
+                                        return;
+                                      }
+                                      setState(() {
+                                        selectedCell = (i, j);
+                                      });
+                                    },
+                                    child: AnimatedContainer(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.lightBlue,
+                                          width: 2.5,
+                                          style: switch (selected) {
+                                            true => BorderStyle.solid,
+                                            _ => BorderStyle.none,
+                                          },
+                                        ),
+                                      ),
+                                      duration: duration,
+                                      child: result,
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                         ],
@@ -49,6 +94,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 );
                 return SizedBox(
+                  key: tableKey,
                   width: tableDimension,
                   child: table,
                 );
@@ -56,6 +102,11 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print(tableKey.currentContext?.size);
+        },
       ),
     );
     return SafeArea(
