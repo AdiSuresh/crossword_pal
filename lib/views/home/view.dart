@@ -1,39 +1,20 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
+class HomePage extends StatefulWidget {
+  const HomePage({
     super.key,
-    required this.title,
   });
 
-  final String title;
-
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   static const shape = (8, 8);
 
-  final grid = Expanded(
-    child: Padding(
-      padding: const EdgeInsets.all(5),
-      child: GridView(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 5,
-        ),
-        children: [
-          for (final _ in Iterable.generate(22))
-            Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFFFFF),
-                border: Border.all(),
-              ),
-            ),
-        ],
-      ),
-    ),
-  );
+  final tableKey = GlobalKey();
+
+  var selectedCell = (0, 0);
 
   @override
   Widget build(BuildContext context) {
@@ -57,14 +38,55 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           for (final j in Iterable.generate(b))
                             TableCell(
-                              child: SizedBox(
-                                width: cellSize,
-                                height: cellSize,
-                                child: Center(
-                                  child: Text(
-                                    'A',
-                                  ),
-                                ),
+                              child: Builder(
+                                builder: (context) {
+                                  final cell = (i, j);
+                                  const duration = Duration(
+                                    milliseconds: 150,
+                                  );
+                                  final selected = cell == selectedCell;
+                                  final scale = switch (selected) {
+                                    true => 1.25,
+                                    _ => 1.0,
+                                  };
+                                  final result = SizedBox(
+                                    width: cellSize,
+                                    height: cellSize,
+                                    child: Center(
+                                      child: AnimatedScale(
+                                        scale: scale,
+                                        duration: duration,
+                                        child: Text(
+                                          'A',
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                  return GestureDetector(
+                                    onTap: () {
+                                      if (selected) {
+                                        return;
+                                      }
+                                      setState(() {
+                                        selectedCell = (i, j);
+                                      });
+                                    },
+                                    child: AnimatedContainer(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.lightBlue,
+                                          width: 2.5,
+                                          style: switch (selected) {
+                                            true => BorderStyle.solid,
+                                            _ => BorderStyle.none,
+                                          },
+                                        ),
+                                      ),
+                                      duration: duration,
+                                      child: result,
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                         ],
@@ -72,6 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 );
                 return SizedBox(
+                  key: tableKey,
                   width: tableDimension,
                   child: table,
                 );
@@ -79,6 +102,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print(tableKey.currentContext?.size);
+        },
       ),
     );
     return SafeArea(

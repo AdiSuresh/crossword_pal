@@ -14,21 +14,7 @@ class Crossword {
     Map<int, String>? clues,
   }) : clues = clues ?? {};
 
-  factory Crossword.squareGrid(
-    final int sideLength,
-  ) {
-    return Crossword(
-      cells: [
-        for (int i = 0; i < sideLength; ++i)
-          List.filled(
-            sideLength,
-            const BlankCell(),
-          ),
-      ],
-    );
-  }
-
-  factory Crossword.rectangleGrid(
+  factory Crossword.grid(
     int length,
     int breadth,
   ) {
