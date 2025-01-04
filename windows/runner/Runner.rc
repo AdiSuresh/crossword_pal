@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "crossword_cracker" "\0"
+            VALUE "FileDescription", "crossword_pal" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "crossword_cracker" "\0"
+            VALUE "InternalName", "crossword_pal" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "crossword_cracker.exe" "\0"
-            VALUE "ProductName", "crossword_cracker" "\0"
+            VALUE "OriginalFilename", "crossword_pal.exe" "\0"
+            VALUE "ProductName", "crossword_pal" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
