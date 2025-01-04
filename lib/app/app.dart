@@ -1,8 +1,8 @@
 import 'package:crossword_pal/app/router.dart';
 import 'package:flutter/material.dart';
 
-class CrosswordCrackerApp extends StatelessWidget {
-  CrosswordCrackerApp({
+class CrosswordPalApp extends StatelessWidget {
+  CrosswordPalApp({
     super.key,
   });
 
