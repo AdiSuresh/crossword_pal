@@ -1,4 +1,4 @@
-import 'package:crossword_cracker/models/crossword.dart';
+import 'package:crossword_pal/models/crossword.dart';
 
 sealed class CrosswordIndex {
   final int clueNumber;

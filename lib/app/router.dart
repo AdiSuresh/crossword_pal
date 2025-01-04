@@ -1,4 +1,4 @@
-import 'package:crossword_cracker/views/home/route/route.dart';
+import 'package:crossword_pal/views/home/route/route.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {

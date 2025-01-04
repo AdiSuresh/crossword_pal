@@ -1,6 +1,6 @@
 {
-    "name": "crossword_cracker",
-    "short_name": "crossword_cracker",
+    "name": "crossword_pal",
+    "short_name": "crossword_pal",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

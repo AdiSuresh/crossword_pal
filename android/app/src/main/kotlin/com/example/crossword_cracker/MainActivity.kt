@@ -1,4 +1,4 @@
-package com.example.crossword_cracker
+package com.example.crossword_pal
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,4 +1,4 @@
-# crossword_cracker
+# crossword_pal
 
 A new Flutter project.
 

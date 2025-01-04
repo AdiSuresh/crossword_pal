@@ -1,4 +1,4 @@
-import 'package:crossword_cracker/models/crossword_cell.dart';
+import 'package:crossword_pal/models/crossword_cell.dart';
 
 enum CrosswordDirection {
   across,
